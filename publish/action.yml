@@ -1,0 +1,20 @@
+name: 'NuGet Package Publisher'
+description: 'Publish a NuGet package'
+inputs:
+  packages:
+    description: 'The NuGet packages selector'
+    required: true
+  source:
+    description: 'The source for hosting NuGet packages'
+    required: true
+  api-key:
+    description: 'The API Key of the source'
+    required: true
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - --packages=${{ inputs.packages }} 
+    - --source=${{ inputs.source }} 
+    - --api-key=${{ inputs.api-key }}

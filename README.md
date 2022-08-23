@@ -9,7 +9,7 @@ Please have a look at [avro-nuget-sandbox repository](https://github.com/Educati
 ## Contributing:
 - After change the code in any action, you can use `make pack-build` to build the container on your local dev environment.
 - Running `make pack-run` will generate the code and pack it as a NuGet package and store it in the `artifacts` folder.
-- There are some other targets in the [Makefile](./Makefile) which could help you for debugging.
+- There are some other targets in the [Makefile](./Makefile) which could help you for debugging. Please remember the Makefile requires `avro-nuget-sandbox` as a sibling repository on your local env.
 - When you are happy with your changes commit the code and push to github. 
 - Finally create a new release by choosing a proper tag.
 - You can test the actions on GitHub workflow from [avro-nuget-sandbox]. Please remember to update the actions versions [here](https://github.com/EducationPerfect/avro-nuget-sandbox/blob/main/.github/workflows/ci.yaml#L44) and [here](https://github.com/EducationPerfect/avro-nuget-sandbox/blob/main/.github/workflows/ci.yaml#L55) to the latest release version.

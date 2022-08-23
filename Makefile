@@ -2,16 +2,16 @@ PWD:=$(shell pwd)
 
 .PHONY: pack-build
 pack-build:
-	docker build -t protobuf-nuget-packer ./pack
+	docker build -t avro-nuget-packer ./pack
 
 .PHONY: pack-run
 pack-run:
-	docker run --rm -it --name protobuf-nuget-packer \
-		--volume $(PWD)/../certificate-generation-contracts/protos:/protos --volume $(PWD)/artifacts:/artifacts \
-		protobuf-nuget-packer \
-			--package-name=EP.Contract.POC \
-			--package-version=1.4.0 \
-			--protobuf-dir-path=/protos \
+	docker run --rm -it --name avro-nuget-packer \
+		--volume $(PWD)/../avro-nuget-sandbox/contracts:/contracts --volume $(PWD)/artifacts:/artifacts \
+		avro-nuget-packer \
+			--package-name=EP.Avro-NuGet-Sandbox.Contracts \
+			--package-version=1.5.0 \
+			--avro-dir-path=/contracts \
 			--output-path=./artifacts \
 			--company=EP \
 			--authors="Team Void"
@@ -20,16 +20,12 @@ pack-run:
 #--------- Debugging ---------------------------------------
 .PHONY: pack-shell
 pack-shell:
-	docker run --rm -it --name protobuf-nuget-packer \
-		--volume $(PWD)/../certificate-generation-contracts/protos:/protos --volume $(PWD)/artifacts:/artifacts \
+	docker run --rm -it --name avro-nuget-packer \
+		--volume $(PWD)/../avro-nuget-sandbox/contracts:/contracts --volume $(PWD)/artifacts:/artifacts \
 		--entrypoint /bin/sh \
-		protobuf-nuget-packer 
+		avro-nuget-packer 
 
 .PHONY: entrypoint
 entrypoint:
-	./bin/entrypoint.sh --package-name=EP.Contract.POC --package-version=1.3.0 --protobuf-dir-path=/protos --output-path=./artifacts --company=EP --authors="Team Void"
-
-.PHONY: add-protos
-add-protos:
-	dotnet-grpc add-file --service None --project /src/EP.Contract.POC/EP.Contract.POC.csproj  /protos/ep/certificate_generation/events/*.proto
+	./bin/entrypoint.sh --package-name=EP.Avro-NuGet-Sandbox.Contracts --package-version=1.5.0 --avro-dir-path=/contracts --output-path=./artifacts --company=EP --authors="Team Void"
 

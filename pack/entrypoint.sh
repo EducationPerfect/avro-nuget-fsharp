@@ -44,8 +44,8 @@ echo "  - Company         = $COMPANY"
 echo "  - Authors         = $AUTHORS"
 
 export PATH="$PATH:/root/.dotnet/tools"
-PACKAGE_FOLDER=./$SRC/$PACKAGE_NAME
-PROJ=$PACKAGE_FOLDER/$PACKAGE_NAME.csproj
+PACKAGE_SRC_FOLDER=$SRC/$PACKAGE_NAME
+PROJ=$PACKAGE_SRC_FOLDER/$PACKAGE_NAME.csproj
 
 echo "Clean up..."
 rm -rf ./src
@@ -56,6 +56,7 @@ sed -i -e "s/{{ Company }}/$COMPANY/g" -e "s/{{ Authors }}/$AUTHORS/g"  Director
 
 echo "Creating $PACKAGE_NAME project..."
 dotnet new classlib --name $PACKAGE_NAME --output $SRC/$PACKAGE_NAME --framework netstandard2.0
+dotnet add $SRC/$PACKAGE_NAME/$PACKAGE_NAME.csproj package Apache.Avro --version 1.11.0
 rm -f ./$SRC/$PACKAGE_NAME/Class1.cs
 
 echo "Adding Avro files..."
@@ -68,8 +69,8 @@ fi
 
 for file in $(find $AVRO_FOLDER -name "*.avsc" -exec readlink -f {} \;)
 do
-  echo "Avro schema file found at '$file'. Trying to generate the coresponding C# class..."
-  avrogen -s $file PACKAGE_FOLDER
+  echo "Avro schema file found at '$file'. Trying to generate the coresponding C# class at '$PACKAGE_SRC_FOLDER'..."
+  avrogen -s $file $PACKAGE_SRC_FOLDER
 done
 
 echo "Restoring packages..."

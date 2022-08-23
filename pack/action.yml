@@ -7,7 +7,7 @@ inputs:
   package-version:
     description: 'The version of the NuGet package'
     required: true
-  Avro-dir-path:
+  avro-dir-path:
     description: 'The path to the directory containing Avro files'
     required: true
   output-path:
@@ -28,7 +28,7 @@ runs:
   args:
     - --package-name=${{ inputs.package-name }} 
     - --package-version=${{ inputs.package-version }} 
-    - --Avro-dir-path=${{ inputs.Avro-dir-path }} 
+    - --avro-dir-path=${{ inputs.avro-dir-path }} 
     - --output-path=${{ inputs.output-path }}
     - --company=${{ inputs.company-name }}
     - --authors=${{ inputs.authors }}

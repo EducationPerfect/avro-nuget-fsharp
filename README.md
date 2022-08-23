@@ -16,10 +16,9 @@ Please have a look at [avro-nuget-sandbox repository](https://github.com/Educati
 
 
 ## Actions
-
 ---
 ## Pack
-The `pack` action generate a Nuget package out of the given Protobuf files and has the following inputs:
+The `pack` action generate a Nuget package out of the given Avro schema files and has the following inputs:
 
 #### Inputs
 

@@ -1,0 +1,34 @@
+name: 'Avro NuGet Package'
+description: 'Generates and packs C# code as a NuGet package out of Avro schema files'
+inputs:
+  package-name:
+    description: 'The name of the NuGet package'
+    required: true
+  package-version:
+    description: 'The version of the NuGet package'
+    required: true
+  Avro-dir-path:
+    description: 'The path to the directory containing Avro files'
+    required: true
+  output-path:
+    description: 'The path to the put generated package at'
+    required: true
+    default: "./packages"
+  company-name:
+    description: 'The name of the company publishing the package'
+    required: false
+    default: "Education Perfect"
+  authors:
+    description: 'The authors of the package'
+    required: true
+    default: "Team VOID"  
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - --package-name=${{ inputs.package-name }} 
+    - --package-version=${{ inputs.package-version }} 
+    - --Avro-dir-path=${{ inputs.Avro-dir-path }} 
+    - --output-path=${{ inputs.output-path }}
+    - --company=${{ inputs.company-name }}
+    - --authors=${{ inputs.authors }}

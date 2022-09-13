@@ -77,7 +77,7 @@ echo "Restoring packages..."
 dotnet restore $PROJ
 
 echo "Building the project..."
-dotnet build -c Release -p:AssemblyVersion=$PACKAGE_VERSION --no-restore $PROJ
+dotnet build -c Release --no-restore $PROJ
 
 echo "Packing $PACKAGE_NAME version $PACKAGE_VERSION at $OUTPUT_PATH..."
 dotnet pack $PROJ -c Release --no-build --no-restore  -p:PackageVersion=$PACKAGE_VERSION -o $OUTPUT_PATH 

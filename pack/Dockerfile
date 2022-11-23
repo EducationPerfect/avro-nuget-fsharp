@@ -1,6 +1,6 @@
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 
-RUN dotnet tool install -g apache.avro.tools
+RUN dotnet tool install -g 	FSharp.Avro.Apache.Tools
 ENV PATH="${PATH}:/root/.dotnet/tools"
 
 COPY Directory.Build.props /opt/build-tools/Directory.Build.props.template

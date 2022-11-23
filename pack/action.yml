@@ -1,5 +1,5 @@
 name: 'Avro NuGet Package'
-description: 'Generates and packs C# code as a NuGet package out of Avro schema files'
+description: 'Generates and packs F# code as a NuGet package out of Avro schema files'
 inputs:
   package-name:
     description: 'The name of the NuGet package'
@@ -21,14 +21,14 @@ inputs:
   authors:
     description: 'The authors of the package'
     required: true
-    default: "Team VOID"  
+    default: "Team VOID"
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - --package-name=${{ inputs.package-name }} 
-    - --package-version=${{ inputs.package-version }} 
-    - --avro-dir-path=${{ inputs.avro-dir-path }} 
+    - --package-name=${{ inputs.package-name }}
+    - --package-version=${{ inputs.package-version }}
+    - --avro-dir-path=${{ inputs.avro-dir-path }}
     - --output-path=${{ inputs.output-path }}
     - --company=${{ inputs.company-name }}
     - --authors=${{ inputs.authors }}

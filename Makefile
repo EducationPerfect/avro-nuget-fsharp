@@ -9,7 +9,7 @@ pack-run:
 	docker run --rm -it --name avro-nuget-packer \
 		--volume $(PWD)/../avro-nuget-sandbox/contracts:/contracts --volume $(PWD)/artifacts:/artifacts \
 		avro-nuget-packer \
-			--package-name=EP.Avro-NuGet-Sandbox.Contracts \
+			--package-name=EP.Avro-NuGet-Sandbox.Contracts.FSharp \
 			--package-version=1.5.0 \
 			--avro-dir-path=/contracts \
 			--output-path=./artifacts \
@@ -23,7 +23,7 @@ pack-shell:
 	docker run --rm -it --name avro-nuget-packer \
 		--volume $(PWD)/../avro-nuget-sandbox/contracts:/contracts --volume $(PWD)/artifacts:/artifacts \
 		--entrypoint /bin/sh \
-		avro-nuget-packer 
+		avro-nuget-packer
 
 .PHONY: entrypoint
 entrypoint:
